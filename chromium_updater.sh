@@ -8,8 +8,7 @@ if [[ $LATEST -eq $CURRENT ]]; then
   echo "You're already up to date ($LATEST)"
   exit 0
 fi
-
-if [ ${#PROCESSID[*]} -gt 0 ];  then
+if [ "${PROCESSID[0]}" ];  then
   echo "Kill current instance of Chromium.app [y/n]"
   read confirmation
 fi
@@ -18,7 +17,7 @@ if [ "$confirmation" = "y" ];  then
     kill -9 $x
   done
 else 
-  if [ "$confirmation" != "y" ]; then
+  if [ $confirmation -a "$confirmation" != "y" ]; then
     echo "Please close Chromium.app and restart the script"
     exit 0
   fi
