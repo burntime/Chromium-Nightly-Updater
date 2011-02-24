@@ -10,14 +10,14 @@ if [[ $LATEST -eq $CURRENT ]]; then
 fi
 if [ "${PROCESSID[0]}" ];  then
   echo "Kill current instance of Chromium.app [y/n]"
-  read confirmation
+  read -n 1 -s confirmation
 fi
 if [ "$confirmation" = "y" ];  then
   for x in $PROCESSID; do
     kill -9 $x
   done
-else 
-  if [ $confirmation -a "$confirmation" != "y" ]; then
+else
+  if [ $confirmation ]; then
     echo "Please close Chromium.app and restart the script"
     exit 0
   fi
