@@ -31,6 +31,10 @@ echo "Unzipping"
 unzip -o -qq /tmp/chrome-mac.zip -d /tmp
 wait
 
+echo "Remove existing version"
+rm -Rf /Applications/Chromium.app
+wait
+
 echo "Moving new version"
 cp -R /tmp/chrome-mac/Chromium.app /Applications
 wait
