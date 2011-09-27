@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LATEST=`curl -s http://build.chromium.org/f/chromium/snapshots/Mac/LATEST`
+LATEST=`curl -s http://commondatastorage.googleapis.com/chromium-browser-snapshots/Mac/LAST_CHANGE`
 CURRENT=`defaults read /Applications/Chromium.app/Contents/Info SVNRevision 2>/dev/null`
 PROCESSID=`ps ux | awk '/Chromium/ && !/awk/ {print $2}'`
 
@@ -24,7 +24,7 @@ else
 fi
 
 echo "Getting the latest version ($LATEST)"
-curl "http://build.chromium.org/f/chromium/snapshots/Mac/$LATEST/chrome-mac.zip" -o /tmp/chrome-mac.zip
+curl -L "http://commondatastorage.googleapis.com/chromium-browser-snapshots/Mac/$LATEST/chrome-mac.zip" -o /tmp/chrome-mac.zip
 wait
 
 echo "Unzipping"
